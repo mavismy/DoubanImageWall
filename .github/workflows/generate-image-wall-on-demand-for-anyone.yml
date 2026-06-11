@@ -30,12 +30,12 @@ jobs:
           pip install -r requirements.txt
 
       - name: execute py script to generate movie poster wall
-        run: python image_wall.py -i=${{ github.event.inputs.doubanId }} -c=29 -r=11 -o=260 -rd=False
+        run: python image_wall.py -i=${{ github.event.inputs.doubanId }} -c=28 -r=21 -o=0 -rd=False
         
       - name: archive results
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.inputs.doubanId }}
+          name: ${{ github.event.inputs.doubanId }}_full
           retention-days: 1
           path: |
             output/${{ github.event.inputs.doubanId }}_movie.jpg
