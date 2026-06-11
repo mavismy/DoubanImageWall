@@ -16,7 +16,6 @@ jobs:
       cancel-in-progress: false
 
     steps:
-
       - name: checkout repo content
         uses: actions/checkout@v4
 
@@ -36,19 +35,6 @@ jobs:
       - name: execute py script to generate album cover wall
         run: python image_wall.py -i=${{ github.event.inputs.doubanId }} -m='music' -c=10 -r=8 -o=8 -rd=True
         
-      - name: commit caches
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add cache/
-          git commit -m "Update global image cache" -a
-          
-      - name: push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          
       - name: archive results
         uses: actions/upload-artifact@v4
         with:
